@@ -1,0 +1,622 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+
+<style>
+    .title{
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+        /*padding-left: 12px;*/
+    }
+
+    .subtitle{
+        color: gray;
+        padding-top: 0px;
+        margin-top: 0px;
+        font-size: 0.9rem;
+        /*padding-left: 13px;*/
+    }
+
+    .field_description{
+        color:dimgrey;
+        font-size: 0.8rem;
+        font-family:'Times New Roman', Times, serif;
+    }
+    
+    .nav{
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .item_adds{
+        padding: 5px;
+        margin-top: 10px;
+        margin-right: 10px;
+        background: #4888b9;
+        color: white;
+        font-family: inherit;
+        border-radius: 3px;
+        display: inline-block;
+    }
+
+    .close_item{
+        padding-left:4px;
+        cursor: pointer;
+        font-family: 'Font Awesome 5 Pro';
+    }
+
+    .nav-link{
+        color: black;
+    }
+
+    .nav-link.active{
+        color: #3678b0 !important;  
+    }
+</style>
+
+<div class="flex-nav">
+    <section class="flex-nav__body">
+        <div class="container-fluid">
+            <!--BEGIN PAGE TITLE-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1 class = "title">
+                                Dataset
+                            </h1>
+                            <span class = "subtitle">Select the desired fields</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--END PAGE TITLE-->
+            <!--BEGIN NAV_TABS-->
+            <ul class="nav nav-tabs" id="dataset_fields" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="default-tab" data-toogle="tab" href="#default" role="tab"  aria-controls="default" aria-selected="true">Default</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="urls-tab" data-toogle="tab" href="#urls" role="tab"  aria-controls="urls" aria-selected="false">Urls</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="apis-tab" data-toogle="tab" href="#apis" role="tab"  aria-controls="apis" aria-selected="false">Api Calls</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="dlls-tab" data-toogle="tab" href="#dlls" role="tab"  aria-controls="dlls" aria-selected="false">DLLs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="signatures-tab" data-toogle="tab" href="#signatures" role="tab"  aria-controls="signatures" aria-selected="false">Signatures</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="strings-tab" data-toogle="tab" href="#strings" role="tab"  aria-controls="strings" aria-selected="false">Strings</a>
+                </li>
+            </ul>
+            <!--END NAV_TABS-->
+            <!--BEGIN CONTENTS-->
+            <div class="tab-content" id="dataset_fields_content">
+                <!--BEGIN DEFAULT CONTENT-->
+                <div class="tab-pane active show" id="default">
+                    <p class = "field_description">Check the fields you want in your dataset.</p>
+
+                    <div class = "row" style="padding-bottom: 5px">
+                        <div class = "col-4" id="jstree_info">
+                            <ul>
+                                <li data-jstree='{"opened":true,"selected":true}'>
+                                    Info
+                                    <ul>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Added</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Started</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Duration</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Analysis path</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Ended</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Owner</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Score</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Id</a>
+                                        </li>
+                                        <li> 
+                                            Git
+                                            <ul>
+                                                <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                                    <a href="#">Head</a>
+                                                </li>
+                                                <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                                    <a href="#">Fetch Head</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Monitor</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Package</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Route</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Custom</a>
+                                        </li>
+                                        <li>
+                                            Machine
+                                            <ul>
+                                                <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                                    <a href="#">Status</a>
+                                                </li>
+                                                <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                                    <a href="#">Name</a>
+                                                </li>
+                                                <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                                    <a href="#">Label</a>
+                                                </li>
+                                                <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                                    <a href="#">Manager</a>
+                                                </li>
+                                                <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                                    <a href="#">Started On</a>
+                                                </li>
+                                                <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                                    <a href="#">Shutdown On</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'> 
+                                            <a href="#">Platform</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Version</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Options</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class = "col-4" id="jstree_virus_total">
+                            <ul>
+                                <li data-jstree='{"opened":true,"selected":true}'>
+                                    VirusTotal
+                                    <ul>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Scan Id</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">SHA1</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Resource</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Response Code</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Scan Date</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Permalink</a>
+                                        </li>
+                                        <li>
+                                            Summary
+                                            <ul>
+                                                <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                                    <a href="#">Positives</a>
+                                                </li>
+                                                <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                                    <a href="#">Permalink</a>
+                                                </li>
+                                                <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                                    <a href="#">Scan Date</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">SHA256</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Total</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Positives</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">Verbose Msg</a>
+                                        </li>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a href="#">MD5</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class = "col-4" id="jstree_target">
+                            <ul>
+                                <li data-jstree='{"opened":true,"selected":true}'>
+                                    Target
+                                    <ul>
+                                        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                            <a>Category</a>
+                                        </li>
+                                        <li>
+                                            File
+                                            <ul>
+                                                <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                                    <a>Name</a>
+                                                </li>
+                                                <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                                    <a>Type</a>
+                                                </li>
+                                                <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                                    <a>Size</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <hr>
+                </div>
+                <!--END DEFAULT CONTENT-->
+                <!--BEGIN URLS CONTENT-->
+                <div class="tab-pane fade" id="urls" role="tabpanel" aria-labelledby="urls-tab">
+                    <p class = "field_description">Add the urls you want in your dataset</p>
+                    <div class = "form-group">
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="url_input">Url:</label>
+                            </div>
+                            <div class = "col-9">
+                                <input type="text" class="form-control" id="url_input" aria-describedby="urlHelper" placeholder="test123.com">
+                                <small id="urlHelp" class="form-text text-muted">We'll search for both http and https</small>     
+                                <div id = "url_adds"></div>
+                            </div>
+                            <div class = col-3>
+                                <button type="button" class="btn btn-dark" id = "url_add_button">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!--END URLS CONTENT-->
+                <!--BEGIN API's CONTENT-->
+                <div class="tab-pane fade" id="apis" role="tabpanel" aria-labelledby="apis-tab">
+                    <p class = "field_description">Add the API name you want in your dataset</p>
+                    <div class = "form-group">
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="api_input">API:</label>
+                            </div>
+                            <div class = "col-9">
+                                <input type="text" class="form-control" id="api_input" placeholder="API_NAME">
+                                <div id = "api_adds"></div>
+                            </div>
+                            <div class = col-3>
+                                <button type="button" class="btn btn-dark" id = "api_add_button">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!--END API's CONTENT-->
+                <!--BEGIN DLL's CONTENT-->
+                <div class="tab-pane fade" id="dlls" role="tabpanel" aria-labelledby="dlls-tab">
+                    <p class = "field_description">Add the dlls names you want in your dataset</p>
+                    <div class = "form-group">
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="dlls_input">DLL:</label>
+                            </div>
+                            <div class = "col-9">
+                                <input type="text" class="form-control" id="dlls_input" placeholder="DLL_NAME">
+                                <small id="urlHelp" class="form-text text-muted">We'll search for both DLL_NAME and DLL_NAME.dll</small>
+                                <div id = "dlls_adds"></div>
+                            </div>
+                            <div class = col-3>
+                                <button type="button" class="btn btn-dark" id = "dlls_add_button">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!--END DLL's CONTENT-->
+                <!--BEGIN Signatures CONTENT-->
+                <div class="tab-pane fade" id="signatures" role="tabpanel" aria-labelledby="signatures-tab">
+                    <p class = "field_description">Add the signature you want in your dataset</p>
+                    <div class = "form-group">
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="signature_input">Signature:</label>
+                            </div>
+                            <div class = "col-9">
+                                <input type="text" class="form-control" id="signature_input" placeholder="SIGNATURE_NAME">
+                                <div id = "signature_adds"></div>
+                            </div>
+                            <div class = col-3>
+                                <button type="button" class="btn btn-dark" id = "signature_add_button">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!--END Signatures CONTENT-->
+                <!--BEGIN Strings CONTENT-->
+                <div class="tab-pane fade" id="strings" role="tabpanel" aria-labelledby="strings-tab">
+                    <p class = "field_description">Add the strings you want in your dataset</p>
+                    <div class = "form-group">
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="strings_input">String:</label>
+                            </div>
+                            <div class = "col-9">
+                                <input type="text" class="form-control" id="strings_input" placeholder="STRING_NAME">       
+                                <div id = "strings_adds"></div>
+                            </div>
+                            <div class = col-3>
+                                <button type="button" class="btn btn-dark" id = "strings_add_button">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!--END Strings CONTENT-->
+            </div>
+
+            <!--END CONTENTS-->
+            <button class = "btn btn-dark" id = "export_dataset">Exportar</button>
+        </div>
+    </section>
+</div>
+
+<script>
+
+$(document).on("ready",() => {
+    //Change Tabs
+    $('#dataset_fields a').on('click', function (e) {
+        e.preventDefault();
+
+        $(this).tab('show');
+
+        var id_old_content = $("#dataset_fields").find(".active").attr("href");
+        $(id_old_content).removeClass("active show")
+            .removeClass("fade")
+            .addClass("fade")
+
+        var id_new_content = $(this).attr('href');
+        $(id_new_content).removeClass("active show")
+            .removeClass("fade")
+            .addClass("active show");
+    });
+
+    //Add Buttons
+    $("#url_add_button").on("click", () => {
+        url_content = $("#url_input").val();
+
+        if(url_content.trim() === '')
+            return false;
+
+        $("#url_adds").append(
+            '<span class = "item_adds">' +
+                url_content +
+                '<span class = "close_item" onclick="close_item($(this));">' +
+                    'X' + 
+                '</span>' +
+            ' </span>'
+            
+        );
+    });
+
+    $("#signature_add_button").on("click", () => {
+        signature_content = $("#signature_input").val();
+
+        if(signature_content.trim() === '')
+            return false;
+
+        $("#signature_adds").append(
+            '<span class = "item_adds">' +
+                signature_content +
+                '<span class = "close_item" onclick="close_item($(this));">' +
+                    'X' + 
+                '</span>' +
+            ' </span>'
+        );
+    });
+
+    $("#api_add_button").on("click", () => {
+        api_content = $("#api_input").val();
+
+        if(api_content.trim() === '')
+            return false;
+
+        $("#api_adds").append(
+            '<span class = "item_adds">' +
+                api_content +
+                '<span class = "close_item" onclick="close_item($(this));">' +
+                    'X' + 
+                '</span>' +
+            ' </span>'
+        );
+    });
+
+    $("#dlls_add_button").on("click", () => {
+        dlls_content = $("#dlls_input").val();
+
+        if(dlls_content.trim() === '')
+            return false;
+
+        $("#dlls_adds").append(
+            '<span class = "item_adds">' +
+                dlls_content +
+                '<span class = "close_item" onclick="close_item($(this));">' +
+                    'X' + 
+                '</span>' +
+            ' </span>'
+        );
+    });
+
+    $("#strings_add_button").on("click", () => {
+        strings_content = $("#strings_input").val();
+        random_number = Math.floor(Math.random() * 10000000)
+
+        if(strings_content.trim() === '')
+            return false;
+
+        $("#strings_adds").append(
+            '<span class = "item_adds">' +
+                '<span id = "item_add_' + random_number + '">' +
+                '</span>' +
+                '<span class = "close_item" onclick="close_item($(this));">' +
+                    'X' + 
+                '</span>' +
+            ' </span>'
+        );
+
+        $("#item_add_" + random_number).text(strings_content);
+
+    });
+
+    //JSTree Code
+    $('#jstree_info').jstree({
+        "plugins" : [ "checkbox" ]
+    });
+    
+    $('#jstree_virus_total').jstree({
+        "plugins" : [ "checkbox" ]
+    });
+
+    $('#jstree_target').jstree({
+        "plugins" : [ "checkbox" ]
+    });
+
+    //Export
+    $("#export_dataset").on("click", (callback) =>{
+
+        var info_nodes_checkeds = get_tree_selected_names("#jstree_info");
+        var virus_total_nodes_checkeds = get_tree_selected_names("#jstree_virus_total");
+        var target_nodes_checkeds = get_tree_selected_names("#jstree_target");
+
+        var all_nodes_checkeds = info_nodes_checkeds.concat(virus_total_nodes_checkeds)
+                                                    .concat(target_nodes_checkeds);
+
+        var params = {
+            "task_id": task_id,
+            "selected_nodes": all_nodes_checkeds,
+            "url_adds": get_adds("#url_adds"),
+            "api_adds": get_adds("#api_adds"),
+            "dlls_adds": get_adds("#dlls_adds"),
+            "signature_adds": get_adds("#signature_adds"),
+            "strings_adds": get_adds("#strings_adds")
+        };
+
+        CuckooWeb.api_post("/analysis/api/task/export_dataset/", params, function (data) {
+            exportCSVFile(data.csv_string, "dataset");
+        });
+    });
+});
+
+//FUNCTIONS
+function get_tree_selected_names(tree_id){
+    var selecteds = $(tree_id).jstree("get_selected", true);
+
+    var parents;
+    var parent_text;
+    var final_text;
+    var final_text_aux;
+
+    var selecteds_names = [];
+    for (var i = 0; i < selecteds.length; i++) {
+        parents = $(selecteds[i].parents);
+
+        final_text_aux = "";
+        if(selecteds[i].children.length == 0) {
+            for (var j = parents.length - 1; j >= 0; j--) {
+                parent = parents[j];
+
+                if (parent !== "#") {
+                    parent_text = $(tree_id).jstree(true).get_node(parent).text.trim().toLowerCase().replace(' ', '_');
+                    final_text_aux += "." + parent_text;
+                }
+            }
+
+            final_text = final_text_aux.substring(1, final_text_aux.length) + "." + selecteds[i].text.trim().toLowerCase();
+            final_text = final_text.replace(' ', '_')
+
+            selecteds_names.push(final_text);
+        }
+    }
+    return selecteds_names
+}
+
+function get_adds(add_id){
+    itens_adds = $(add_id).children();
+
+    itens_values = []
+    for(var i = 0; i < itens_adds.length; i++){
+        item_text = $(itens_adds[i]).text();
+
+        itens_values.push(
+            item_text.substring(0, item_text.length - 2)
+        );
+    }
+
+    return itens_values;
+}
+
+function close_item(item){
+    item.parent().remove();
+}
+
+function exportCSVFile(csv, fileTitle) {
+    var exportedFilenmae = fileTitle + '.csv' || 'export.csv';
+    var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+
+    if (navigator.msSaveBlob) { // IE 10+
+        navigator.msSaveBlob(blob, exportedFilenmae);
+    } 
+    else {
+        var link = document.createElement("a");
+        
+        if (link.download !== undefined) { 
+            var url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", exportedFilenmae);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    }
+}
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+
+{% endblock %}
+
+
+
